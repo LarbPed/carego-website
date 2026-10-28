@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th" data-fs="1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สำหรับทีมงาน (โหมดสาธิต) – CareGo</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#14508f">
+  <link rel="icon" href="assets/app-icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>สำหรับทีมงาน <span class="tag">โหมดสาธิต</span></h1>
+      <p>จำลองการทำงานหลังบ้านของแพลตฟอร์ม: ยืนยันคำขอ จับคู่ผู้ให้บริการ อัปเดตสถานะ และดูตัวชี้วัด (KPIs)</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding:1rem 0 3rem">
+    <div class="notice warn"><span data-icon="alert"></span><span>หน้านี้อ่าน/เขียนข้อมูลจาก<b>เบราว์เซอร์เดียวกับที่ลูกค้าจอง</b> ใช้สำหรับสาธิตและทดสอบเท่านั้น (ไม่มีการล็อกอิน) เมื่อเปิดใช้งานจริงควรเชื่อมต่อฐานข้อมูล/ระบบหลังบ้าน หรือตั้งค่า <code>webhookUrl</code> ใน <code>js/config.js</code> เพื่อส่งคำขอไปยังทีมงาน<br>เปิดหน้า “นัดหมายของฉัน” ไว้อีกแท็บ แล้วลองเปลี่ยนสถานะที่นี่ จะเห็นความคืบหน้าอัปเดตทันที</span></div>
+
+    <h2 style="font-size:1.4rem">ตัวชี้วัดความสำเร็จ (KPIs)</h2>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="tools">
+      <div class="field" style="margin:0;min-width:220px"><label for="q" class="sr-only">ค้นหา</label><input id="q" type="search" placeholder="ค้นหา รหัส / ชื่อ / เบอร์โทร"></div>
+      <div class="field" style="margin:0"><label for="fs" class="sr-only">สถานะ</label>
+        <select id="fs"><option value="all">ทุกสถานะ</option><option value="open">ที่ยังไม่เสร็จสิ้น</option></select></div>
+      <button class="btn btn-ghost btn-sm" type="button" id="bSeed"><span data-icon="plus" data-size="18"></span> เพิ่มข้อมูลตัวอย่าง</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="bCsv"><span data-icon="download" data-size="18"></span> ส่งออก CSV</button>
+      <button class="btn btn-danger btn-sm" type="button" id="bClear"><span data-icon="trash" data-size="18"></span> ล้างข้อมูลทั้งหมด</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>รหัส</th><th>บริการ</th><th>วัน-เวลา</th><th>ลูกค้า</th><th>ราคา</th><th>สถานะ</th><th>ผู้ให้บริการ</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="hint" id="count" style="margin-top:.6rem"></p>
+  </div>
+</main>
+
+<dialog id="confirmDlg" aria-labelledby="cfTitle">
+  <div class="dlg-head"><h2 id="cfTitle">ล้างข้อมูลทั้งหมด?</h2></div>
+  <div class="dlg-body"><p>ข้อมูลการจองทั้งหมดในเบราว์เซอร์นี้จะถูกลบและกู้คืนไม่ได้</p></div>
+  <div class="dlg-foot"><button class="btn btn-ghost" type="button" id="cfNo">ยกเลิก</button><button class="btn btn-danger" type="button" id="cfYes">ลบทั้งหมด</button></div>
+</dialog>
+
+<div id="site-footer"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

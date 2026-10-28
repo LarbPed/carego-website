@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th" data-fs="1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>นัดหมายของฉัน – CareGo</title>
+  <meta name="description" content="ดูรายการจอง ติดตามสถานะแบบทีละขั้นตอน ยกเลิก เพิ่มลงปฏิทิน และให้คะแนนความพึงพอใจ">
+  <meta name="theme-color" content="#14508f">
+  <link rel="icon" href="assets/app-icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="my">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>นัดหมายของฉัน</h1>
+      <p>ติดตามสถานะการจอง ตั้งแต่ส่งคำขอจนเสร็จสิ้นบริการ</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding:1rem 0 3rem">
+    <div class="notice info"><span data-icon="info"></span><span>ข้อมูลการจองถูกเก็บไว้ใน<b>เบราว์เซอร์เครื่องนี้</b> ขณะนี้จึงเปิดดูได้จากเครื่องและเบราว์เซอร์ที่ใช้จองเท่านั้น</span></div>
+
+    <div class="tabs" role="tablist" aria-label="กรองประเภทบริการ" id="tabs">
+      <button class="tab" role="tab" data-f="all" aria-selected="true">ทั้งหมด</button>
+      <button class="tab" role="tab" data-f="transport" aria-selected="false">Transport</button>
+      <button class="tab" role="tab" data-f="homecare" aria-selected="false">Home Care</button>
+    </div>
+    <div class="tabs" style="margin-top:0" id="statusTabs" aria-label="กรองสถานะ">
+      <button class="tab" data-s="active" aria-selected="true">กำลังดำเนินการ</button>
+      <button class="tab" data-s="done" aria-selected="false">เสร็จสิ้น</button>
+      <button class="tab" data-s="cancelled" aria-selected="false">ยกเลิก</button>
+      <button class="tab" data-s="all" aria-selected="false">ทุกสถานะ</button>
+    </div>
+
+    <div class="bk-list" id="list" aria-live="polite"></div>
+
+    <div class="btn-row"><a class="btn btn-primary" href="booking.html"><span data-icon="calendar" data-size="20"></span> จองนัดหมายใหม่</a></div>
+  </div>
+</main>
+
+<!-- รายละเอียดการจอง -->
+<dialog id="detail" aria-labelledby="dTitle">
+  <div class="dlg-head">
+    <div><h2 id="dTitle"></h2><div class="hint" id="dSub"></div></div>
+    <button class="dlg-x" type="button" id="dClose" aria-label="ปิด"><span data-icon="x"></span></button>
+  </div>
+  <div class="dlg-body" id="dBody"></div>
+  <div class="dlg-foot" id="dFoot"></div>
+</dialog>
+
+<!-- ยืนยันยกเลิก -->
+<dialog id="cancelDlg" aria-labelledby="cTitle">
+  <div class="dlg-head"><h2 id="cTitle">ยกเลิกการจอง?</h2><button class="dlg-x" type="button" id="cClose" aria-label="ปิด"><span data-icon="x"></span></button></div>
+  <div class="dlg-body">
+    <p>การยกเลิกไม่สามารถย้อนกลับได้ หากต้องการใช้บริการอีกครั้งต้องจองใหม่</p>
+    <div class="field">
+      <label for="cReason">เหตุผลที่ยกเลิก</label>
+      <select id="cReason">
+        <option>เปลี่ยนแผนการเดินทาง/นัดหมาย</option>
+        <option>แพทย์เลื่อนนัด</option>
+        <option>จัดหาผู้ดูแล/การเดินทางด้วยวิธีอื่นได้แล้ว</option>
+        <option>ราคาไม่เหมาะสม</option>
+        <option>จองผิดพลาด</option>
+        <option>อื่น ๆ</option>
+      </select>
+    </div>
+  </div>
+  <div class="dlg-foot">
+    <button class="btn btn-ghost" type="button" id="cKeep">กลับ ไม่ยกเลิก</button>
+    <button class="btn btn-danger" type="button" id="cConfirm">ยืนยันยกเลิก</button>
+  </div>
+</dialog>
+
+<div id="site-footer"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/my-bookings.js"></script>
+</body>
+</html>
